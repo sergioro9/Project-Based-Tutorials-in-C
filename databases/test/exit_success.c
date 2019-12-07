@@ -3,6 +3,6 @@
 
 int main(int argc, char **argv)
 {
-    printf("%d\n", EXIT_SUCCESS)
+    printf("%d\n", EXIT_SUCCESS);
     return 0;
 }

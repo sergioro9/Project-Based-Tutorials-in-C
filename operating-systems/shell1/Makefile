@@ -9,10 +9,9 @@ TESTS:=$(basename $(shell find $(TESTDIR) -name '*.$(FORMAT)'))
 TARGETS:=$(FILES:%=$(SOURCEDIR)/%.$(FORMAT))
 OBJECTS:=$(FILES:%=$(OBJDIR)/%.o)
 CFLAGS=-g -Wall -w
-LDFLAGS=
+LDFLAGS=-ldl -lm
 INCLUDE=include
 
-#all: $(TESTDIR)
 all: $(EXEC)
 
 .PHONY: check
