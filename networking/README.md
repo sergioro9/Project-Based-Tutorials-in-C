@@ -3,9 +3,9 @@ Beej's Guide to Network Programming
 
 ## Compilation
 
-    libraries to compile in Solaris or SunOS: 
+to download the files run:
 
-        $ cc -o server server.c -lnsl -lsocket -lresolv -lxnet
+  $ ./examples.sh
 
 ## Notes
 

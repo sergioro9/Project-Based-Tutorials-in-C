@@ -1,6 +1,6 @@
 /*
- * showip.c -- show IP addresses for a host given on the command line
- */
+** showip.c -- show IP addresses for a host given on the command line
+*/
 
 #include <stdio.h>
 #include <string.h>
@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
 
 	if (argc != 2) {
 	    fprintf(stderr,"usage: showip hostname\n");
-        fprintf(stderr,"example: showip sergioro.mx\n");
 	    return 1;
 	}
 

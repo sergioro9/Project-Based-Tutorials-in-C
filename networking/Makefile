@@ -4,28 +4,26 @@ CC=gcc
 OBJDIR=obj
 SOURCEDIR=src
 TESTDIR=test
-FILES:=$(notdir $(basename $(shell find $(SOURCEDIR) -name '*.$(FORMAT)')))
+FILES:=$(basename $(shell find $(SOURCEDIR) -name '*.$(FORMAT)'))
 TESTS:=$(basename $(shell find $(TESTDIR) -name '*.$(FORMAT)'))
-TARGETS:=$(FILES:%=$(SOURCEDIR)/%.$(FORMAT))
-OBJECTS:=$(FILES:%=$(OBJDIR)/%.o)
+TARGETS:=$(FILES:%=%.$(FORMAT))
+OBJECTS:=$(FILES:src/%=$(OBJDIR)/%.o)
 CFLAGS=-g -Wall -w
 LDFLAGS=#-ldl -lm
 INCLUDE=include
 
-all: $(SOURCEDIR)
+all: $(FILES)
 
 .PHONY: check
 check:
 	@echo 'Checking variables:'
-	@echo -e "\t$(FILES)\n\t$(TARGETS)\n\t$(OBJECTS)\n\t$(TESTS)"
+	@echo -e "\tFILES: $(FILES)\n\tTARGETS: $(TARGETS)\n\tOBJECTS: $(OBJECTS)\n\tTESTS: $(TESTS)"
 
 $(EXEC): $(OBJECTS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 $(OBJDIR)/%.o: $(SOURCEDIR)/%.c
 	$(CC) -o $@ -c $^ -I $(INCLUDE)
-
-$(SOURCEDIR): $(basename $(TARGETS))
 
 $(TESTDIR): $(TESTS)
 
@@ -34,4 +32,4 @@ list:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
 clean:
-	@rm -f $(EXECS) $(OBJECTS) $(TESTS)
+	@rm -f $(FILES) $(OBJECTS) $(TESTS)
