@@ -26,3 +26,6 @@ to download the files run:
     - stream sockets: reliable two-way connection communcation streams. If you output two items into the socket in the order “1, 2”, they will arrive in the order “1, 2” at the opposite end. Telnet  uses stream sockets. All the characters you type need to arrive in the same order you type them, right? Also, web browsers use the HTTP protocol which uses stream sockets to get pages. Indeed, if you telnet to a web site on port 80, and type “GET / HTTP/1.0” and hit RETURN twice, it’ll dump the HTML back at you.
     - datagram sockets (aka connectionless sockets, though they can be connected()'d too)
 
+# References
+
+<https://beej.us/guide/bgnet/html//index.html>
